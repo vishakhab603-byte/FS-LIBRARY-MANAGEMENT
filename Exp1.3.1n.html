@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product Card – React</title>
+
+  <!-- React CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #eef3f8;
+    }
+
+    .app {
+      padding: 40px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    }
+
+    .image {
+      width: 100%;
+      height: 140px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #f0f4f8, #d9e2ec);
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      font-size: 20px;
+      margin: 0 0 10px 0;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 0 0 16px 0;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .status.in {
+      background: #e6f9ef;
+      color: #1e7f4f;
+    }
+
+    .status.out {
+      background: #fdeaea;
+      color: #b3261e;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function ProductCard({ title, price, inStock }) {
+      return (
+        <div className="card">
+          <div className="image"></div>
+          <h2>{title}</h2>
+          <p className="price">${price}</p>
+          <span className={`status ${inStock ? "in" : "out"}`}>
+            {inStock ? "In Stock" : "Out of Stock"}
+          </span>
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <div className="app">
+          <div className="grid">
+            <ProductCard title="Wireless Headphones" price="129.99" inStock={true} />
+            <ProductCard title="Mechanical Keyboard" price="89.99" inStock={false} />
+            <ProductCard title="Smart Watch" price="199.99" inStock={true} />
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
